@@ -1,0 +1,65 @@
+{% extends "main/main_layout.html" %}
+
+{% block main_content %}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Product Detail</h1>
+        </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Basic Information</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h1>{{ product.name }}</h1>
+                    </div>
+                    <div class="mb-3">
+                        <span class="font-weight-bold">Categories:</span>
+                        {% for category in product.categories.all %}
+                            {{ category.name }},
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" style="height: 500px;">
+                                {% for product_image in product_images %}
+                                    {% if forloop.counter0 == 0 %}
+                                        <div class="carousel-item active h-100">
+                                            <img class="d-block w-100 h-100" src="{{ product_image.image.url }}" alt="{{ product_image.image_name }}">
+                                        </div>
+                                    {% else %}
+                                        <div class="carousel-item h-100">
+                                            <img class="d-block w-100 h-100" src="{{ product_image.image.url }}" alt="{{ product_image.image_name }}">
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

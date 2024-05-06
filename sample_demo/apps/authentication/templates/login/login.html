@@ -1,0 +1,37 @@
+{% extends "authentication/login_layout.html" %}
+
+{% block first_option_title %}
+    LOGIN WITH
+{% endblock %}
+
+{% block second_option_title %}
+    OR LOGIN WITH EMAIL
+{% endblock %}
+
+{% block authentication_form %}
+    <form class="myform" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">{{ field }}</div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 bn">Forgot Password</div>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Login</small></button>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <div class="text-center">
+                    <a href="{% url 'register' %}" class="bn text-secondary">Don't have account ?</a>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

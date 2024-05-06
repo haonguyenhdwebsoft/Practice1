@@ -1,0 +1,28 @@
+{% extends "authentication/login_layout.html" %}
+
+{% block first_option_title %}
+    REGISTER WITH
+{% endblock %}
+
+{% block second_option_title %}
+    OR REGISTER WITH EMAIL
+{% endblock %}
+
+{% block authentication_form %}
+    <form class="myform" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">{{ field }}</div>
+        {% endfor %}
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-block btn-primary btn-lg"><small><i class="far fa-user pr-2"></i>Register</small></button>
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <div class="text-center">
+                    <a href="{% url 'login' %}" class="bn text-secondary">Already have an account</a>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
